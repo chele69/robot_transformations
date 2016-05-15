@@ -78,7 +78,7 @@ MEAS = CORR.T				#translation
 print "CORRECTED MEASURED POINTS\n\n",MEAS,"\n"
 print "CORRECTED ANGLES\n\n",MEAS_A,"\n"
 
-BASE = np.array([R[0,3],R[1,3],R[2,3],Roll,Pitch,Yaw])
+BASE = np.array([R[0,3],R[1,3],R[2,3],angles[0]*180/np.pi,angles[1]*180/np.pi,angles[2]*180/np.pi])
 print "OLD BASE(%.3f,%.3f,%.3f,%.3f,%.3f,%.3f)\n" %(OLDBASE[0],OLDBASE[1],OLDBASE[2],OLDBASE[3],OLDBASE[4],OLDBASE[5])
 print "DIF BASE(%.3f,%.3f,%.3f,%.3f,%.3f,%.3f)\n" %(BASE[0],BASE[1],BASE[2],BASE[3],BASE[4],BASE[5])
 BASE = OLDBASE + BASE
