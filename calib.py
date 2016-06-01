@@ -15,12 +15,12 @@ print "\nNOMINAL\n\n",NOM,"\n\nMEASURED\n\n",MEAS,"\n"
 R = transformations.superimposition_matrix(MEAS,NOM,usesvd=True)
 #R = transformations.inverse_matrix(R)
 print "Rotation matrix calulated from points difference\n\n",R,"\n"
-#rot=R.T
+rot=transformations.inverse_matrix(R)
 rob = transformations.euler_matrix(math.radians(OLDBASE[3]),math.radians(OLDBASE[4]),math.radians(OLDBASE[5]), axes='sxyz')
 tob = transformations.translation_matrix(OLDBASE[0:3])
 robn = np.dot(tob,rob)  #rotation matrix from old base
 print "Rotation matrix from old base\n\n",robn,"\n"
-robnew = np.dot(R,robn)
+robnew = np.dot(rot,robn)
 print "Rotation matrix RESULT\n\n",robnew,"\n"
 scale, shear, angles, translate, perspective = transformations.decompose_matrix(robnew)
 
@@ -39,5 +39,3 @@ print "BaseB = %.3f" % pitch
 print "BaseC = %.3f\n\n------------------------" % yaw
 
 raw_input()
-
-
